@@ -31,33 +31,9 @@ async function youtube(id) {
         platform: 'youtube',
     }
 
-    if(live) {
+    if (live) {
         r.title = title;
         r.viewers = livedata.match(/videoPrimaryInfoRenderer".*?"viewCount".*?"runs".*?"text".*?"(.*?)"/s)[1]?.split(' ')[0];
-    }
-
-    return r;
-}
-
-const unescape = require('unescape');
-async function _dlive(id) {
-    const {data} = await axios.get(`https://dlive.tv/${id}`);
-    const tree = parse(data);
-
-    const name = id;
-    const avatar = tree.querySelector('.avatar-img').attributes.src;
-
-    const streamInfo = tree.querySelector('.info-title');
-    let viewers = streamInfo?.childNodes[1].childNodes[3].innerText.trim().split(' ')[0];
-    const live = !!viewers;
-
-    let r = {
-        live, name, avatar, id, platform: "dlive"
-    };
-
-    if(live) {
-        r.viewers = viewers;
-        r.title = unescape(streamInfo.childNodes[0].innerText.trim().replace("\n", " "), 'all');
     }
 
     return r;
@@ -110,7 +86,14 @@ const scrapers = new Map([
     ["bitwave", bitwave],
 ]);
 
+const rateLimit = require("express-rate-limit");
+const limiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 50 // limit each IP to 100 requests per windowMs
+});
+
 app.use(cors());
+app.use(limiter);
 
 app.get('/streams', async (req, res) => {
     res.send(Array.from(idToData.values()));
