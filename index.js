@@ -33,7 +33,8 @@ async function youtube(id) {
 
     if (live) {
         r.title = title;
-        r.viewers = livedata.match(/videoPrimaryInfoRenderer".*?"viewCount".*?"runs".*?"text".*?"(.*?)"/s)[1]?.split(' ')[0];
+        let viewers = livedata.match(/videoPrimaryInfoRenderer".*?"viewCount".*?"runs".*?"text".*?"(.*?)"/s)[1]?.split(' ')[0];
+        r.viewers = Number(viewers.replace(/[.,]/g, ""));
     }
 
     return r;
@@ -88,7 +89,7 @@ const scrapers = new Map([
 
 const rateLimit = require("express-rate-limit");
 const limiter = rateLimit({
-    windowMs: 1 * 60 * 1000, // 1 minute
+    windowMs: 60 * 1000, // 1 minute
     max: 50 // limit each IP to 100 requests per windowMs
 });
 
@@ -104,12 +105,16 @@ const updatePeriod = 5 * 60 * 1000;
 
 async function scrape(platform, id) {
     let data;
+    if(!scrapers.has(platform)) {
+        console.error(`Platform ${platform} not supported (${id})!`);
+        return;
+    }
     try {
         data = await scrapers.get(platform)(id);
     } catch (e) {
         console.error(`Couldn't scrape ${id}: `, e.message);
     }
-    idToData.set(id, data);
+    data && idToData.set(id, data);
 }
 
 const loadPeople = (async (people) => {
