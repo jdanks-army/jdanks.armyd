@@ -96,10 +96,22 @@ app.use(cors());
 app.use(limiter);
 
 app.get('/streams', async (req, res) => {
+    console.info(`[${req.ip}] Requested /streams`);
     res.send(Array.from(idToData.values()));
 })
 
 const updatePeriod = 5 * 60 * 1000;
+
+async function scrape(platform, id) {
+    let data;
+    try {
+        data = await scrapers.get(platform)(id);
+    } catch (e) {
+        console.error(`Couldn't scrape ${id}: `, e.message);
+    }
+    idToData.set(id, data);
+}
+
 const loadPeople = (async (people) => {
     console.info("Populating scrape data...");
 
@@ -108,21 +120,15 @@ const loadPeople = (async (people) => {
         const platform = person[0];
         const id = person[1];
 
-        let data;
-        try {
-            data = await scrapers.get(platform)(id);
-        } catch (e) {
-            console.error(`Couldn't scrape ${id}: `, e);
-        }
-        idToData.set(id, data);
-
+        scrape(platform, id);
         console.info(`Scraped ${id}!`);
 
         setTimeout(() => {
             setInterval(async () => {
-                const data = await scrapers.get(platform)(id);
-                idToData.set(id, data);
+
+                scrape(platform, id);
                 console.info(`[${new Date().toTimeString().split(' ')[0]}] Rescraped ${id}`);
+
             }, updatePeriod);
         }, (updatePeriod / people.length) * i);
         // Split `updatePeriod` into equal periods, and then scrape every `updatePeriod`,
