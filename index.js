@@ -101,6 +101,10 @@ app.get('/streams', async (req, res) => {
     res.send(Array.from(idToData.values()));
 })
 
+app.get('/src', (req, res) => {
+    res.send(`Copyright ${new Date().getFullYear()}, AGPLv3, https://github.com/jdanks-army/jdanks.armyd`)
+});
+
 const updatePeriod = 5 * 60 * 1000;
 
 async function scrape(platform, id) {
