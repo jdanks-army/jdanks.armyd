@@ -3,7 +3,7 @@ const express = require('express')
 const cors = require('cors');
 const { parse } = require('node-html-parser');
 
-const port = process.env.JDANKS_PORT || 3009;
+const port = process.env.JDANKS_PORT || 80;
 const app = express()
 
 const idToData = new Map();
