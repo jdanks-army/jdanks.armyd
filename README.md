@@ -7,7 +7,7 @@ After having started a listen on `JDANKS_PORT`, it will read
 `./people.json` and start scrapin'.
 
 JSON format:
-```json
+```
 [
   [platform, id, ...optional]
 ]
@@ -19,7 +19,7 @@ Supported platforms:
  - `"bitwave"`
 
 Exposed endpoint is `/streams`, returns JSON objects of the format
-```json
+```
 {
   platform,
   id,
