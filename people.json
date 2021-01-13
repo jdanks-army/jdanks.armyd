@@ -1,5 +1,10 @@
 [
   ["youtube", "UCxEdWwrSPpTLudLb66j0kSw", "scobbie"],
+  ["youtube", "UCAwC_Y0X4UdwchsbbNDeZJA", "boulden"],
+
+  ["youtube", "UCgsAPwuq5cZcd0iFLs2ptKA", "dispatch"],
+  ["youtube", "UCSq29hQyumpx2ArTrgDLUrA", "dispatchplays"],
+
   ["bitwave", "Herbbudgreen"],
   ["bitwave", "dvdrw"],
   ["bitwave", "doomtube"],
@@ -9,9 +14,7 @@
   ["bitwave", "ambassadorofchat"],
   ["bitwave", "Krueger"],
   ["bitwave", "Z0nnie"],
-  ["bitwave", "curvycom"],
-  ["bitwave", "naughtypastor"],
-  ["youtube", "UCAwC_Y0X4UdwchsbbNDeZJA", "boulden"],
+  ["bitwave", "MaxineWaters"],
   ["bitwave", "fearandloading"],
   ["bitwave", "fren"],
   ["bitwave", "tdog"],
@@ -19,5 +22,40 @@
   ["bitwave", "psyche"],
   ["bitwave", "cocainemitch"],
   ["bitwave", "ggallin"],
-  ["dlive", "N0Face"]
+
+  ["bitwave", "naughtypastor"],
+  ["bitwave", "curvycom"],
+
+  ["vaughn", "theoddkast"],
+  ["vaughn", "thirdparty"],
+
+  ["trovo", "eggheadmann"],
+  ["youtube", "UCTJ7RhEz9NGMP2bp3apio1Q", "eggheadmann"],
+
+  ["youtube", "UCgpVO5oxAh7oMk3vynU-2Vg", "joshua moon"],
+
+  ["youtube", "UClJtyMSnpVHyNpmqc2WJjVQ", "lookner"],
+  ["youtube", "UCshCsg1YVKli8yBai-wa78w", "agenda-free tv"],
+
+  ["youtube", "UCwKfWVtaJ4g3Pn8gpLBZ5-A", "turk"],
+
+  ["youtube", "UCMftrtw4B8yQrNhlOF5OypQ", "spcc"],
+
+  ["youtube", "UCh2y19-JP1VURulJi5uSKEw", "eternalabyss"],
+
+  ["youtube", "UCrAjzvsMtbLfWzEo8vNPUOQ", "goocheese"],
+
+  ["youtube", "UCbkjX3E0IhuUfPzL0FjSPaw", "rekeita"],
+
+  ["youtube", "UC8Ayw8-5fvmm38O3Q-XM9xA", "cog"],
+
+  ["dlive", "PeoplesPopulistPress"],
+
+  ["dlive", "N0Face"],
+  ["robotstreamer", "3819", "phoneboned"],
+
+  ["robotstreamer", "3842", "beans"],
+  ["bitwave", "Cyberdemon531", "beans"],
+  ["bitwave", "JDANKS.ARMY", "beans"]
+
 ]
