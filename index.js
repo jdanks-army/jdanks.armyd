@@ -145,7 +145,7 @@ const loadPeople = (async (people) => {
         setTimeout(() => {
             setInterval(async () => {
 
-                scrape(platform, id);
+                await scrape(platform, id, person[2]);
                 console.info(`[${new Date().toTimeString().split(' ')[0]}] Rescraped ${id}`);
 
             }, updatePeriod);
