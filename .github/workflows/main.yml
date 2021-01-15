@@ -27,3 +27,9 @@ jobs:
           
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+      
+      - name: Deploy
+        uses: fjogeleit/http-request-action@v1.6.1
+        with:
+          url: ${{ secrets.UPDATE_SVC_URL }}
+          bearerToken: ${{ secrets.UPDATE_SVC_TOKEN }}
