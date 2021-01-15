@@ -33,3 +33,4 @@ jobs:
         with:
           url: ${{ secrets.UPDATE_SVC_URL }}
           bearerToken: ${{ secrets.UPDATE_SVC_TOKEN }}
+          timeout: 0
