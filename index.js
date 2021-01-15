@@ -77,14 +77,24 @@ async function bitwave(id) {
     };
 }
 
-async function robotstreamer(id) {
-    const {data} = axios.get(`https://robotstreamer.com/robot/${id}`);
+async function robotstreamer(id, name) {
+    const {data: _data} = await axios.get(`http://api.robotstreamer.com:8080/v1/get_robot/${id}`);
+    const data = _data[0];
+    const live = data.status === "online";
+    const title = data.robot_name;
+    const viewers = data.viewers;
+    return {
+        live, name, id,
+        platform: "robotstreamer",
+        title, viewers
+    }
 }
 
 const scrapers = new Map([
     ["youtube", youtube],
     ["dlive", dlive],
     ["bitwave", bitwave],
+    ["robotstreamer", robotstreamer],
 ]);
 
 const rateLimit = require("express-rate-limit");
@@ -107,16 +117,16 @@ app.get('/src', (req, res) => {
 
 const updatePeriod = 5 * 60 * 1000;
 
-async function scrape(platform, id) {
+async function scrape(platform, id, name) {
     let data;
     if(!scrapers.has(platform)) {
         console.error(`Platform ${platform} not supported (${id})!`);
         return;
     }
     try {
-        data = await scrapers.get(platform)(id);
+        data = await scrapers.get(platform)(id, name);
     } catch (e) {
-        console.error(`Couldn't scrape ${id}: `, e.message);
+        console.error(`Couldn't scrape ${id} ${name ?? ""}: `, e.message);
     }
     data && idToData.set(id, data);
 }
@@ -129,7 +139,7 @@ const loadPeople = (async (people) => {
         const platform = person[0];
         const id = person[1];
 
-        scrape(platform, id);
+        scrape(platform, id, person[2]);
         console.info(`Scraped ${id}!`);
 
         setTimeout(() => {
