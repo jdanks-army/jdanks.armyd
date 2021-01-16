@@ -1,7 +1,7 @@
 const axios = require('axios');
 const express = require('express')
 const cors = require('cors');
-const { parse } = require('node-html-parser');
+const assert = require("assert");
 
 const port = process.env.JDANKS_PORT || 80;
 const app = express()
@@ -90,11 +90,57 @@ async function robotstreamer(id, name) {
     }
 }
 
+const trovo_id_memoization = new Map();
+async function trovo(username) {
+    const token = process.env.TROVO_CLIENT_ID;
+
+    assert( !!token );
+
+    if( !trovo_id_memoization.has(username) ) {
+        const {data} = await axios.post(
+            'https://open-api.trovo.live/openplatform/getusers',
+            {user: [username]},
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Client-ID': token,
+                }
+            }
+        );
+        trovo_id_memoization.set(username, data.users[0].channel_id );
+    }
+
+    assert(trovo_id_memoization.has(username));
+
+    const {data} = await axios.post(
+        'https://open-api.trovo.live/openplatform/channels/id',
+        {channel_id: trovo_id_memoization.get(username)},
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Client-ID': token,
+            }
+        }
+    );
+
+    return {
+        live: data.is_live,
+        title: data.live_title,
+        viewers: data.current_viewers,
+        id: username, platform: "trovo",
+        name: username,
+        avatar: data.profile_pic,
+    }
+}
+
 const scrapers = new Map([
     ["youtube", youtube],
     ["dlive", dlive],
     ["bitwave", bitwave],
     ["robotstreamer", robotstreamer],
+    ["trovo", trovo],
 ]);
 
 const rateLimit = require("express-rate-limit");
