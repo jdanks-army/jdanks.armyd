@@ -135,12 +135,71 @@ async function trovo(username) {
     }
 }
 
+const twitch_avatars = new Map();
+let twitch_access_token;
+
+async function twitch_init() {
+    const {data} = await axios.post(
+        `https://id.twitch.tv/oauth2/token`
+        + `?client_id=${process.env.TWITCH_CLIENT_ID}`
+        + `&client_secret=${process.env.TWITCH_CLIENT_SECRET}`
+        + `&grant_type=client_credentials`
+    );
+    twitch_access_token = data;
+
+    setInterval(async () => {
+        twitch_access_token = (await axios.post(
+            `https://id.twitch.tv/oauth2/token`
+            + `?client_id=${process.env.TWITCH_CLIENT_ID}`
+            + `&client_secret=${process.env.TWITCH_CLIENT_SECRET}`
+            + `&grant_type=client_credentials`
+        )).data;
+    }, twitch_access_token.expires_in);
+}
+
+async function twitch(username) {
+    const access_token = (await twitch_access_token).access_token;
+
+    // Update avatar every fifth scrape of the same username
+    // or; update every avatars every 25 minutes
+    if( !twitch_avatars.has(username) || twitch_avatars.get(username)[1] === 5 ) {
+        const {data: user_data} = await axios.get(`https://api.twitch.tv/helix/users?login=${username}`, {
+            headers: {
+                'Client-Id': process.env.TWITCH_CLIENT_ID,
+                'Authorization': `Bearer ${access_token}`
+            }
+        });
+        twitch_avatars.set(username, [user_data.data[0].profile_image_url, 5]);
+    } else {
+        twitch_avatars.get(username)[1]--;
+    }
+
+    const {data: _data} = await axios.get(`https://api.twitch.tv/helix/streams?user_login=${username}`, {
+        headers: {
+            'Client-Id': process.env.TWITCH_CLIENT_ID,
+            'Authorization': `Bearer ${access_token}`
+        }
+    });
+    const stream_data = _data.data[0];
+
+    return {
+        live: stream_data.type === "live",
+        name: username,
+        id: username,
+        avatar: twitch_avatars.get(username)[0],
+        platform: "twitch",
+        title: stream_data.title,
+        viewers: stream_data.viewer_count
+    };
+}
+
 const scrapers = new Map([
     ["youtube", youtube],
     ["dlive", dlive],
     ["bitwave", bitwave],
     ["robotstreamer", robotstreamer],
     ["trovo", trovo],
+    ["twitch", twitch],
 ]);
 
 const rateLimit = require("express-rate-limit");
@@ -165,10 +224,10 @@ const updatePeriod = 5 * 60 * 1000;
 
 async function scrape(platform, id, name) {
     let data;
-    if(!scrapers.has(platform)) {
-        console.error(`Platform ${platform} not supported (${id})!`);
-        return;
-    }
+
+    if(!scrapers.has(platform))
+        return console.error(`Platform ${platform} not supported (${id})!`);
+
     try {
         data = await scrapers.get(platform)(id, name);
     } catch (e) {
@@ -179,6 +238,8 @@ async function scrape(platform, id, name) {
 
 const loadPeople = (async (people) => {
     console.info("Populating scrape data...");
+
+    await twitch_init();
 
     // multithread all initial scrapes, wait for them all to finish
     await Promise.all(people.map(async (person, i) => {
