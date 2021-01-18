@@ -1,34 +1,46 @@
 # jdanks.armyd
 The `jdanks.army` daemon. Run `npm ci && npm start` to get it going.
 
-The environment variable `JDANKS_PORT` customizes port (default `80`).
 
-After having started a listen on `JDANKS_PORT`, it will read 
-`./people.json` and start scrapin'.
+Reads input from `./people.json` and starts scrapin'.
 
-JSON format:
+`people` JSON format:
 ```
 [
   [platform, id, ...optional]
 ]
 ```
 
-Supported platforms:
+### Supported platforms:
  - `"youtube"` - id has to be the long `UC.....` format
  - `"dlive"`
  - `"bitwave"`
- - `"robotstreamer"`
- - `"trovo"` - expects TROVO_CLIENT_ID secret envar
+ - `"robotstreamer"` - third entry is used as username
+ - `"trovo"` - expects `TROVO_CLIENT_ID` envar
+ - `"twitch"` - expects `TWITCH_CLIENT_ID`, `TWITCH_CLIENT_SECRET` envars
 
-Exposed endpoint is `/streams`, returns JSON objects of the format
-```
-{
-  platform,
-  id,
-  name,
-  avatar,
-  live,
-  title,
-  viewers
-}
-```
+### Environment variables
+All secrets are optional; in that case, scraping from these 
+websites will not function.
+
+- `JDANKS_PORT` · Listen port. Defaults to `80`.
+
+ - `TROVO_CLIENT_ID` · for Trovo support.
+ - `TWITCH_CLIENT_ID` `TWITCH_CLIENT_SECRET` · for Twitch support.
+
+
+### Endpoints
+Exposed endpoints are 
+ - `/streams` · returns JSON objects of scraped data, formatted as:
+      - ```
+        {
+          platform,
+          id,
+          name,
+          avatar,
+          live,
+          title,
+          viewers
+        }
+        ```
+ - `/src` · returns license information and link to source code
