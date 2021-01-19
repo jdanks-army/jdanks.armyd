@@ -1,12 +1,19 @@
-const express = require('express')
+const http = require('http');
+
+const https = require('https');
+const fs = require('fs');
+
+const express = require('express');
 const cors = require('cors');
+
 const crypto = require('crypto');
 const hash = crypto.createHash('sha256');
 
 const scrapers = require("./scrapers");
 
 const port = process.env.JDANKS_PORT || 80;
-const app = express()
+const sslPort = process.env.JDANKS_SSL_PORT || 443;
+const app = express();
 
 const idToData = new Map();
 
@@ -74,7 +81,23 @@ const loadPeople = (async (people) => {
 });
 
 const people = require('./people.json');
-app.listen(port, async () => {
-    console.log(`jdanks.armyd listening to 0.0.0.0:${port}`)
+
+const httpServer = http.createServer(app);
+httpServer.listen(port, async () => {
+    console.log(`jdanks.armyd listening to 0.0.0.0:${port}`);
     await loadPeople(people);
 });
+
+// Try setting up an https server
+try {
+    const httpsServer = https.createServer({
+        key: fs.readFileSync('/etc/certs/api.jdanks.army/privkey.pem'),
+        cert: fs.readFileSync('/etc/certs/api.jdanks.army/fullchain.pem'),
+    }, app);
+    httpsServer.listen(443, () => {
+        console.log(`jdanks.armyd/TLS listening to 0.0.0.0:${sslPort}`);
+    });
+} catch (e) {
+    console.error("Couldn't set up HTTPS server!");
+    console.error(e.message);
+}
