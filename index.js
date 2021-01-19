@@ -7,7 +7,6 @@ const express = require('express');
 const cors = require('cors');
 
 const crypto = require('crypto');
-const hash = crypto.createHash('sha256');
 
 const scrapers = require("./scrapers");
 
@@ -35,7 +34,7 @@ app.get('/src', (req, res) => {
     res.send(`Copyright ${new Date().getFullYear()}, AGPLv3, https://github.com/jdanks-army/jdanks.armyd`)
 });
 
-const updatePeriod = 5 * 60 * 1000;
+const updatePeriod =  1000;
 
 async function scrape(platform, userId, name) {
     let data;
@@ -49,8 +48,7 @@ async function scrape(platform, userId, name) {
         console.error(`Couldn't scrape ${userId} ${name ?? ""}: `, e.message);
     }
 
-    hash.update(platform + userId + name);
-    const id = hash.copy().digest('hex');
+    const id = crypto.createHash('sha256').update(platform + userId + name).digest('hex');
     data && (data.id = id) && idToData.set(id, data);
 }
 
