@@ -49,7 +49,7 @@ async function scrape(platform, userId, name) {
     }
 
     const id = crypto.createHash('sha256').update(platform + userId + name).digest('hex');
-    data && (data.id = id) && idToData.set(id, data);
+    data && (data.id = id) && (data.userId = userId) && idToData.set(id, data);
 }
 
 const loadPeople = (async (people) => {
