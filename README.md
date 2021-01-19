@@ -24,7 +24,9 @@ All secrets are optional; in that case, scraping from these
 websites will not function.
 
 - `JDANKS_PORT` · Listen port. Defaults to `80`.
-
+- `JDANKS_SSL_PORT` · Listen port for HTTPS. Defaults to `443`.
+- `JDANKS_SSL_PRIVKEY` · Location of private key. Defaults to `/etc/certs/api.jdanks.army/privkey.pem`.
+- `JDANKS_SSL_CERT` · Listen of certificate. Defaults to `/etc/certs/api.jdanks.army/fullchain.pem`.
  - `TROVO_CLIENT_ID` · for Trovo support.
  - `TWITCH_CLIENT_ID` `TWITCH_CLIENT_SECRET` · for Twitch support.
 
