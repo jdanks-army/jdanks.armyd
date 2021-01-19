@@ -1,7 +1,6 @@
 const axios = require("axios");
 
-const platform = "robotstreamer";
-module.exports = [platform, async function (id, name) {
+module.exports = ["robotstreamer", async function (id, name) {
     const {data: _data} = await axios.get(`http://api.robotstreamer.com:8080/v1/get_robot/${id}`);
     const data = _data[0];
 
@@ -11,7 +10,6 @@ module.exports = [platform, async function (id, name) {
 
     return {
         live, name, id,
-        platform, title,
-        viewers
+        title, viewers
     }
 }];

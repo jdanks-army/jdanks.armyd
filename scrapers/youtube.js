@@ -1,7 +1,6 @@
 const axios = require("axios");
 
-const platform = "youtube";
-module.exports = [platform, async function (id) {
+module.exports = ["youtube", async function (id) {
     const {data} = await axios.get(`https://youtube.com/channel/${id}`);
 
     const avatar = data.match(/channelMetadataRenderer.*?avatar.*?thumbnails.*?url".*?"(.*?)"/s)[1];
@@ -18,7 +17,7 @@ module.exports = [platform, async function (id) {
 
     let r = {
         avatar, name,
-        live, id, platform,
+        live, id,
     }
 
     // Usually, title/viewer data is sent regardless of live status.

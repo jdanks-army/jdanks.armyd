@@ -1,7 +1,6 @@
 const axios = require("axios");
 
 const avatars = new Map();
-const platform = "twitch";
 
 const hasAuth = process.env.TWITCH_CLIENT_ID && process.env.TWITCH_CLIENT_SECRET && 1;
 
@@ -33,7 +32,7 @@ twitch_access_token.then((data) => {
     // But you never know when it might take less
 })
 
-module.exports = [platform, async function (username) {
+module.exports = ["twitch", async function (username) {
     const access_token = (await twitch_access_token).access_token;
 
     // Update avatar every fifth scrape of the same username
@@ -63,7 +62,6 @@ module.exports = [platform, async function (username) {
         name: username,
         id: username,
         avatar: avatars.get(username)[0],
-        platform,
         title: stream_data?.title,
         viewers: stream_data?.viewer_count
     };

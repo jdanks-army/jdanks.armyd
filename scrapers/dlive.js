@@ -1,7 +1,6 @@
 const axios = require("axios");
 
-const platform = "dlive";
-module.exports = [platform, async function (id) {
+module.exports = ["dlive", async function (id) {
     const {data} = await axios.post('https://graphigo.prd.dlive.tv/',
         `{"query":"query{userByDisplayName(displayname: \\"${id}\\") {livestream{ view title } avatar}}"}`);
 
@@ -9,7 +8,7 @@ module.exports = [platform, async function (id) {
     const live = !!response.livestream;
 
     return {
-        platform, id, name: id,
+        id, name: id,
         avatar: response.avatar,
         live,
         viewers: response.livestream.view,

@@ -2,8 +2,7 @@ const axios = require("axios");
 const assert = require("assert");
 
 const id_memoization = new Map();
-const platform = "trovo";
-module.exports = [platform, async function (username) {
+module.exports = ["trovo", async function (username) {
     // TODO: Take a more functional approach and wrap the entire
     //       lambda instead of accessing it directly?
     const token = process.env.TROVO_CLIENT_ID;
@@ -43,7 +42,7 @@ module.exports = [platform, async function (username) {
         live: data.is_live,
         title: data.live_title,
         viewers: data.current_viewers,
-        id: username, platform,
+        id: username,
         name: username,
         avatar: data.profile_pic,
     }
