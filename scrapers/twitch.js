@@ -60,7 +60,6 @@ module.exports = ["twitch", async function (username) {
     return {
         live: !!stream_data,
         name: username,
-        id: username,
         avatar: avatars.get(username)[0],
         title: stream_data?.title,
         viewers: stream_data?.viewer_count

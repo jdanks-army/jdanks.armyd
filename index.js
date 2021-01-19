@@ -1,7 +1,7 @@
-const axios = require('axios');
 const express = require('express')
 const cors = require('cors');
-const assert = require("assert");
+const crypto = require('crypto');
+const hash = crypto.createHash('sha256');
 
 const scrapers = require("./scrapers");
 
@@ -30,18 +30,21 @@ app.get('/src', (req, res) => {
 
 const updatePeriod = 5 * 60 * 1000;
 
-async function scrape(platform, id, name) {
+async function scrape(platform, userId, name) {
     let data;
 
     if(!scrapers.has(platform))
-        return console.error(`Platform ${platform} not supported (${id})!`);
+        return console.error(`Platform ${platform} not supported (${userId})!`);
 
     try {
-        data = await scrapers.get(platform)(id, name);
+        data = await scrapers.get(platform)(userId, name);
     } catch (e) {
-        console.error(`Couldn't scrape ${id} ${name ?? ""}: `, e.message);
+        console.error(`Couldn't scrape ${userId} ${name ?? ""}: `, e.message);
     }
-    data && idToData.set(id, data);
+
+    hash.update(platform + userId + name);
+    const id = hash.copy().digest('hex');
+    data && (data.id = id) && idToData.set(id, data);
 }
 
 const loadPeople = (async (people) => {
@@ -50,16 +53,16 @@ const loadPeople = (async (people) => {
     // multithread all initial scrapes, wait for them all to finish
     await Promise.all(people.map(async (person, i) => {
         const platform = person[0];
-        const id = person[1];
+        const userId = person[1];
 
-        await scrape(platform, id, person[2]);
-        console.info(`Scraped ${id}!`);
+        await scrape(platform, userId, person[2]);
+        console.info(`Scraped ${userId}!`);
 
         setTimeout(() => {
             setInterval(async () => {
 
-                await scrape(platform, id, person[2]);
-                console.info(`[${new Date().toTimeString().split(' ')[0]}] Rescraped ${id}`);
+                await scrape(platform, userId, person[2]);
+                console.info(`[${new Date().toTimeString().split(' ')[0]}] Rescraped ${userId}`);
 
             }, updatePeriod);
         }, (updatePeriod / people.length) * i);

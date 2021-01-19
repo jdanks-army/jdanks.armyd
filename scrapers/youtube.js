@@ -17,7 +17,7 @@ module.exports = ["youtube", async function (id) {
 
     let r = {
         avatar, name,
-        live, id,
+        live
     }
 
     // Usually, title/viewer data is sent regardless of live status.

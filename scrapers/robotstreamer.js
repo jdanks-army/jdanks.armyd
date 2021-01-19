@@ -9,7 +9,7 @@ module.exports = ["robotstreamer", async function (id, name) {
     const viewers = data.viewers;
 
     return {
-        live, name, id,
+        live, name,
         title, viewers
     }
 }];

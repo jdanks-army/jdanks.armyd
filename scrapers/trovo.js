@@ -42,7 +42,6 @@ module.exports = ["trovo", async function (username) {
         live: data.is_live,
         title: data.live_title,
         viewers: data.current_viewers,
-        id: username,
         name: username,
         avatar: data.profile_pic,
     }
