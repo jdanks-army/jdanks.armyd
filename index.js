@@ -60,9 +60,6 @@ const loadPeople = (async (people) => {
         const platform = person[0];
         const userId = person[1];
 
-        await scrape(platform, userId, person[2]);
-        console.info(`Scraped ${userId}!`);
-
         setTimeout(() => {
             setInterval(async () => {
 
@@ -73,6 +70,10 @@ const loadPeople = (async (people) => {
         }, (updatePeriod / people.length) * i);
         // Split `updatePeriod` into equal periods, and then scrape every `updatePeriod`,
         // so that the scrapes are evenly distributed over the `updatePeriod`.
+
+        await scrape(platform, userId, person[2]);
+        console.info(`Scraped ${userId}!`);
+
     }));
 
     console.info("Finished scraping everyone!")
