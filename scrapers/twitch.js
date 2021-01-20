@@ -18,7 +18,7 @@ let twitch_access_token = (hasAuth || undefined) && new Promise(async (resolve, 
         reject(e);
     }
 });
-twitch_access_token.then((data) => {
+twitch_access_token?.then((data) => {
     refreshIntervalId = setInterval(async () => {
         const {data} = await axios.post(
             `https://id.twitch.tv/oauth2/token`
