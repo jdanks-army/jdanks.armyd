@@ -89,8 +89,8 @@ httpServer.listen(port, async () => {
 
 // Try setting up an https server
 try {
-    const key = process.env.JDANKS_SSL_PRIVKEY || '/etc/certs/api.jdanks.army/privkey.pem';
-    const cert = process.env.JDANKS_SSL_CERT || '/etc/certs/api.jdanks.army/fullchain.pem';
+    const key = fs.readFileSync( process.env.JDANKS_SSL_PRIVKEY || '/etc/certs/api.jdanks.army/privkey.pem' );
+    const cert = fs.readFileSync( process.env.JDANKS_SSL_CERT || '/etc/certs/api.jdanks.army/fullchain.pem' );
     const httpsServer = https.createServer({ key, cert }, app);
     httpsServer.listen(443, () => {
         console.log(`jdanks.armyd/TLS listening to 0.0.0.0:${sslPort}`);
