@@ -1,83 +1,262 @@
 [
-  ["youtube", "UCxEdWwrSPpTLudLb66j0kSw", "scobbie"],
-  ["twitch", "scobbie3doo"],
-  
-  ["youtube", "UCAwC_Y0X4UdwchsbbNDeZJA", "boulden"],
+  {
+    "platform": "youtube",
+    "userId": "UCxEdWwrSPpTLudLb66j0kSw",
+    "customUsername": "scobbie"
+  },
+  {
+    "platform": "twitch",
+    "userId": "scobbie3doo"
+  },
 
-  ["youtube", "UCgsAPwuq5cZcd0iFLs2ptKA", "dispatch"],
-  ["youtube", "UCSq29hQyumpx2ArTrgDLUrA", "dispatchplays"],
-  ["bitwave", "dispatch"],
+  {
+    "platform": "youtube",
+    "userId": "UCAwC_Y0X4UdwchsbbNDeZJA",
+    "customUsername": "boulden"
+  },
 
-  ["bitwave", "jdanks420"],
-  ["trovo", "jdanks420"],
-  
-  ["bitwave", "crackrockchris"],
-  ["trovo", "CRC2021"],
-  ["youtube", "UC4AwaOB1kUKrsbTUN7J-enA"],
-  
-  ["bitwave", "Herbbudgreen"],
-  ["bitwave", "dvdrw"],
-  ["bitwave", "doomtube"],
-  ["bitwave", "hetero-alpha-god"],
-  ["bitwave", "MarkPugner"],
-  ["bitwave", "playlistbot9k"],
-  ["bitwave", "ambassadorofchat"],
-  ["bitwave", "Krueger"],
-  ["bitwave", "Z0nnie"],
-  ["bitwave", "fearandloading"],
-  ["bitwave", "fren"],
-  ["bitwave", "tdog"],
-  ["bitwave", "maxinewaters"],
-  
-  ["bitwave", "psyche"],
-  ["robotstreamer", "3187", "psyche"],
-  
-  ["bitwave", "cocainemitch"],
-  ["bitwave", "ggallin"],
-  ["bitwave", "magnazero"],
-  ["bitwave", "naughtypastor"],
-  ["bitwave", "curvycom"],
-  ["bitwave", "nexus"],
-  ["bitwave", "baggygreen"],
-  ["bitwave", "popmycherry"],
+  {
+    "platform": "youtube",
+    "userId": "UCgsAPwuq5cZcd0iFLs2ptKA",
+    "customUsername": "dispatch"
+  },
+  {
+    "platform": "youtube",
+    "userId": "UCSq29hQyumpx2ArTrgDLUrA",
+    "customUsername": "dispatchplays"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "dispatch"
+  },
 
-  ["vaughn", "theoddkast"],
-  ["vaughn", "thirdparty"],
+  {
+    "platform": "bitwave",
+    "userId": "jdanks420",
+    "featuredRank": "0"
+  },
+  {
+    "platform": "trovo",
+    "userId": "jdanks420",
+    "featuredRank": "1"
+  },
 
-  ["trovo", "eggheadmann"],
-  ["youtube", "UCTJ7RhEz9NGMP2bp3apio1Q", "eggheadmann"],
+  {
+    "platform": "bitwave",
+    "userId": "crackrockchris"
+  },
+  {
+    "platform": "trovo",
+    "userId": "CRC2021"
+  },
+  {
+    "platform": "youtube",
+    "userId": "UC4AwaOB1kUKrsbTUN7J-enA",
+    "customUsername": "CRC"
+  },
 
-  ["youtube", "UCgpVO5oxAh7oMk3vynU-2Vg", "joshua moon"],
-
-  ["youtube", "UCwKfWVtaJ4g3Pn8gpLBZ5-A", "turk"],
-
-  ["youtube", "UCMftrtw4B8yQrNhlOF5OypQ", "spcc"],
-
-  ["youtube", "UCmEOvT2KcZZYGEHLI7382ZA", "eternalabyss"],
-  ["bitwave", "TheEternalAbyss"],
-
-  ["dlive", "PeoplesPopulistPress"],
-
-  ["dlive", "N0Face"],
-  ["robotstreamer", "3819", "phoneboned"],
-
-  ["youtube", "UCAr_VuxFMsgDULuunJjlJkA", "leopirate"],
-  ["bitwave", "leopirate"],
-
-  ["robotstreamer", "100", "Pippy (Rick)"],
-  ["robotstreamer", "106", "TrumpBot (Rick)"],
-  ["robotstreamer", "546", "AssBlaster2 (Rick)"],
-  
-  ["robotstreamer", "1048", "GraveGateKeeper"],
-  
-  ["robotstreamer", "3737", "duhsten"],
-  
-  ["robotstreamer", "3890", "LeCessna (fetch)"],
-
-  ["trovo", "-Hightower-"],
-  ["bitwave", "jackpoopypants"],
-
-  ["robotstreamer", "108", "JennyBot2 (E7)"],
-  
-  ["bitwave", "communism"]
+  {
+    "platform": "bitwave",
+    "userId": "Herbbudgreen",
+    "featuredRank": "10"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "dvdrw"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "doomtube"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "hetero-alpha-god"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "MarkPugner"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "playlistbot9k"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "ambassadorofchat"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "Krueger"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "Z0nnie"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "fearandloading"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "fren"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "tdog"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "maxinewaters"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "psyche"
+  },
+  {
+    "platform": "robotstreamer",
+    "userId": "3187",
+    "customUsername": "psyche"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "cocainemitch"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "ggallin"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "magnazero"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "naughtypastor"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "curvycom"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "nexus"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "baggygreen"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "popmycherry"
+  },
+  {
+    "platform": "vaughn",
+    "userId": "theoddkast"
+  },
+  {
+    "platform": "vaughn",
+    "userId": "thirdparty"
+  },
+  {
+    "platform": "trovo",
+    "userId": "eggheadmann"
+  },
+  {
+    "platform": "youtube",
+    "userId": "UCTJ7RhEz9NGMP2bp3apio1Q",
+    "customUsername": "eggheadmann"
+  },
+  {
+    "platform": "youtube",
+    "userId": "UCgpVO5oxAh7oMk3vynU-2Vg",
+    "customUsername": "joshua moon"
+  },
+  {
+    "platform": "youtube",
+    "userId": "UCwKfWVtaJ4g3Pn8gpLBZ5-A",
+    "customUsername": "turk"
+  },
+  {
+    "platform": "youtube",
+    "userId": "UCMftrtw4B8yQrNhlOF5OypQ",
+    "customUsername": "spcc"
+  },
+  {
+    "platform": "youtube",
+    "userId": "UCmEOvT2KcZZYGEHLI7382ZA",
+    "customUsername": "eternalabyss"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "TheEternalAbyss"
+  },
+  {
+    "platform": "dlive",
+    "userId": "PeoplesPopulistPress"
+  },
+  {
+    "platform": "dlive",
+    "userId": "N0Face"
+  },
+  {
+    "platform": "robotstreamer",
+    "userId": "3819",
+    "customUsername": "phoneboned"
+  },
+  {
+    "platform": "youtube",
+    "userId": "UCAr_VuxFMsgDULuunJjlJkA",
+    "customUsername": "leopirate"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "leopirate"
+  },
+  {
+    "platform": "robotstreamer",
+    "userId": "100",
+    "customUsername": "Pippy (Rick)"
+  },
+  {
+    "platform": "robotstreamer",
+    "userId": "106",
+    "customUsername": "TrumpBot (Rick)"
+  },
+  {
+    "platform": "robotstreamer",
+    "userId": "546",
+    "customUsername": "AssBlaster2 (Rick)"
+  },
+  {
+    "platform": "robotstreamer",
+    "userId": "1048",
+    "customUsername": "GraveGateKeeper"
+  },
+  {
+    "platform": "robotstreamer",
+    "userId": "3737",
+    "customUsername": "duhsten"
+  },
+  {
+    "platform": "robotstreamer",
+    "userId": "3890",
+    "customUsername": "LeCessna (fetch)"
+  },
+  {
+    "platform": "trovo",
+    "userId": "-Hightower-"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "jackpoopypants"
+  },
+  {
+    "platform": "robotstreamer",
+    "userId": "108",
+    "customUsername": "JennyBot2 (E7)"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "communism"
+  }
 ]
