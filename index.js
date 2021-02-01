@@ -37,23 +37,27 @@ app.get('/src', (req, res) => {
 const updatePeriod = 5 * 60 * 1000;
 
 /**
- * @return {Promise<void>}
- * @returns Will never error; always resolves
+ * @return Boolean
+ * @returns Return true on successful scrape
  */
 async function scrape({platform, userId, customUsername}) {
     let data;
 
-    if (!scrapers.has(platform))
-        return console.error(`Platform ${platform} not supported (${userId})!`);
+    const scraper = (scrapers.has(platform) && scrapers.get(platform))
+        || ( async () => { throw new Error(`Platform ${platform} not supported!`); } );
 
     try {
-        data = await scrapers.get(platform)(userId, customUsername);
+        data = await scraper(userId, customUsername);
     } catch (e) {
         console.error(`Couldn't scrape ${userId} ${customUsername ?? ""}: `, e.message);
+        return false;
     }
 
     const id = crypto.createHash('sha256').update(platform + userId + customUsername).digest('hex');
-    data && (data.id = id) && (data.userId = userId) && idToData.set(id, data);
+    // Append `id' and `userId' fields before adding to the map
+    (data.id = id) && (data.userId = userId) && idToData.set(id, data);
+
+    return true;
 }
 
 const timestamp = () => new Date().toTimeString().split(' ')[0];
@@ -76,7 +80,7 @@ const loadPeople = async people => {
             // Split `updatePeriod` into equal periods, and then scrape every `updatePeriod`,
             // so that the scrapes are evenly distributed over the `updatePeriod`.
 
-            await scrape(person); console.info(`Scraped ${(person.userId)}!`);
+            await scrape(person) && console.info(`Scraped ${(person.userId)}!`);
         })
     );
 

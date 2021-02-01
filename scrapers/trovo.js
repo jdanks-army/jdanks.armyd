@@ -6,7 +6,7 @@ module.exports = ["trovo", async function (username) {
     // TODO: Take a more functional approach and wrap the entire
     //       lambda instead of accessing it directly?
     const token = process.env.TROVO_CLIENT_ID;
-    assert(!!token);
+    if(!token) throw new Error("No TROVO_CLIENT_ID set.");
 
     // Get IDs for usernames
     if (!id_memoization.has(username)) {

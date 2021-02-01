@@ -33,10 +33,13 @@ twitch_access_token?.then((data) => {
 })
 
 module.exports = ["twitch", async function (username) {
-    const access_token = (await twitch_access_token).access_token;
+    const access_token = (await twitch_access_token)?.access_token;
+
+    if(!hasAuth) throw new Error("No TWITCH_CLIENT_ID / TWITCH_CLIENT_SECRET set.");
+    else if(!access_token) throw new Error("Could not auth* with Twitch!");
 
     // Update avatar every fifth scrape of the same username
-    // or; update every avatars every 25 minutes
+    // or; update avatars on 25 minute basis
     if (!avatars.has(username) || avatars.get(username)[1] === 5) {
         const {data: user_data} = await axios.get(`https://api.twitch.tv/helix/users?login=${username}`, {
             headers: {
