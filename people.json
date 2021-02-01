@@ -8,11 +8,13 @@
     "platform": "twitch",
     "userId": "scobbie3doo"
   },
+
   {
     "platform": "youtube",
     "userId": "UCAwC_Y0X4UdwchsbbNDeZJA",
     "customUsername": "boulden"
   },
+
   {
     "platform": "youtube",
     "userId": "UCgsAPwuq5cZcd0iFLs2ptKA",
@@ -27,14 +29,18 @@
     "platform": "bitwave",
     "userId": "dispatch"
   },
+
   {
     "platform": "bitwave",
-    "userId": "jdanks420"
+    "userId": "jdanks420",
+    "featuredRank": "0"
   },
   {
     "platform": "trovo",
-    "userId": "jdanks420"
+    "userId": "jdanks420",
+    "featuredRank": "1"
   },
+
   {
     "platform": "bitwave",
     "userId": "crackrockchris"
@@ -45,11 +51,14 @@
   },
   {
     "platform": "youtube",
-    "userId": "UC4AwaOB1kUKrsbTUN7J-enA"
+    "userId": "UC4AwaOB1kUKrsbTUN7J-enA",
+    "customUsername": "CRC"
   },
+
   {
     "platform": "bitwave",
-    "userId": "Herbbudgreen"
+    "userId": "Herbbudgreen",
+    "featuredRank": "10"
   },
   {
     "platform": "bitwave",
