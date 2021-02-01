@@ -36,48 +36,52 @@ app.get('/src', (req, res) => {
 
 const updatePeriod = 5 * 60 * 1000;
 
-async function scrape(platform, userId, name) {
+/**
+ * @return {Promise<void>}
+ * @returns Will never error; always resolves
+ */
+async function scrape({platform, userId, customUsername}) {
     let data;
 
-    if(!scrapers.has(platform))
+    if (!scrapers.has(platform))
         return console.error(`Platform ${platform} not supported (${userId})!`);
 
     try {
-        data = await scrapers.get(platform)(userId, name);
+        data = await scrapers.get(platform)(userId, customUsername);
     } catch (e) {
-        console.error(`Couldn't scrape ${userId} ${name ?? ""}: `, e.message);
+        console.error(`Couldn't scrape ${userId} ${customUsername ?? ""}: `, e.message);
     }
 
-    const id = crypto.createHash('sha256').update(platform + userId + name).digest('hex');
+    const id = crypto.createHash('sha256').update(platform + userId + customUsername).digest('hex');
     data && (data.id = id) && (data.userId = userId) && idToData.set(id, data);
 }
 
-const loadPeople = (async (people) => {
+const timestamp = () => new Date().toTimeString().split(' ')[0];
+const loadPeople = async people => {
     console.info("Populating scrape data...");
 
     // multithread all initial scrapes, wait for them all to finish
-    await Promise.all(people.map(async (person, i) => {
-        const platform = person[0];
-        const userId = person[1];
+    await Promise.all(
+        people.map(async (person, i) => {
+            setTimeout(() => {
+                setInterval(async () => {
 
-        setTimeout(() => {
-            setInterval(async () => {
+                    await scrape(person);
+                    console.info(
+                        `[${timestamp()}] Rescraped ${(person.userId)}`
+                    );
 
-                await scrape(platform, userId, person[2]);
-                console.info(`[${new Date().toTimeString().split(' ')[0]}] Rescraped ${userId}`);
+                }, updatePeriod);
+            }, (updatePeriod / people.length) * i);
+            // Split `updatePeriod` into equal periods, and then scrape every `updatePeriod`,
+            // so that the scrapes are evenly distributed over the `updatePeriod`.
 
-            }, updatePeriod);
-        }, (updatePeriod / people.length) * i);
-        // Split `updatePeriod` into equal periods, and then scrape every `updatePeriod`,
-        // so that the scrapes are evenly distributed over the `updatePeriod`.
-
-        await scrape(platform, userId, person[2]);
-        console.info(`Scraped ${userId}!`);
-
-    }));
+            await scrape(person); console.info(`Scraped ${(person.userId)}!`);
+        })
+    );
 
     console.info("Finished scraping everyone!")
-});
+}
 
 const people = require('./people.json');
 
@@ -89,9 +93,9 @@ httpServer.listen(port, async () => {
 
 // Try setting up an https server
 try {
-    const key = fs.readFileSync( process.env.JDANKS_SSL_PRIVKEY || '/etc/certs/api.jdanks.army/privkey.pem' );
-    const cert = fs.readFileSync( process.env.JDANKS_SSL_CERT || '/etc/certs/api.jdanks.army/fullchain.pem' );
-    const httpsServer = https.createServer({ key, cert }, app);
+    const key = fs.readFileSync(process.env.JDANKS_SSL_PRIVKEY || '/etc/certs/api.jdanks.army/privkey.pem');
+    const cert = fs.readFileSync(process.env.JDANKS_SSL_CERT || '/etc/certs/api.jdanks.army/fullchain.pem');
+    const httpsServer = https.createServer({key, cert}, app);
     httpsServer.listen(443, () => {
         console.log(`jdanks.armyd/TLS listening to 0.0.0.0:${sslPort}`);
     });
