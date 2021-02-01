@@ -4,8 +4,13 @@ const avatars = new Map();
 
 const hasAuth = process.env.TWITCH_CLIENT_ID && process.env.TWITCH_CLIENT_SECRET && 1;
 
+// Twitch needs you to first acquire an access token before interacting with their API
+//
+// `twitch_access_token' is initally a promise which resolves with the token (see line 11).
+// After that resolves, a then() handler sets an interval to refresh the token (see line 26)
+
 let refreshIntervalId;
-let twitch_access_token = (hasAuth || undefined) && new Promise(async (resolve, reject) => {
+let twitch_access_token = !hasAuth ? undefined : new Promise(async (resolve, reject) => {
     try {
         const {data} = await axios.post(
             `https://id.twitch.tv/oauth2/token`
@@ -28,8 +33,10 @@ twitch_access_token?.then((data) => {
         );
         twitch_access_token = data;
     }, Math.min(2147483647, data.expires_in * 1000));
-    // Takes about ~2mo for a token to expire, usually.
-    // But you never know when it might take less
+    // If the expires_in value is bigger than 32 bits, pick the largest possible number.
+
+    // It usually takes about ~2mo for a token to expire, but you never know
+    // when it might take less
 })
 
 module.exports = ["twitch", async function (username) {
