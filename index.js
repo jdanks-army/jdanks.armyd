@@ -40,7 +40,7 @@ const updatePeriod = 5 * 60 * 1000;
  * @return Boolean
  * @returns Return true on successful scrape
  */
-async function scrape({platform, userId, customUsername}) {
+async function scrape({platform, userId, customUsername, ...rest}) {
     let data;
 
     const scraper = (scrapers.has(platform) && scrapers.get(platform))
@@ -55,7 +55,10 @@ async function scrape({platform, userId, customUsername}) {
 
     const id = crypto.createHash('sha256').update(platform + userId + customUsername).digest('hex');
     // Append `id' and `userId' fields before adding to the map
-    (data.id = id) && (data.userId = userId) && idToData.set(id, data);
+    data = { id, userId, ...data };
+    if(rest.featuredRank) data.featuredRank = rest.featuredRank;
+
+    idToData.set(id, data);
 
     return true;
 }
