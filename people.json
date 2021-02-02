@@ -2,11 +2,13 @@
   {
     "platform": "youtube",
     "userId": "UCxEdWwrSPpTLudLb66j0kSw",
-    "customUsername": "scobbie"
+    "customUsername": "scobbie",
+    "featuredRank": "21"
   },
   {
     "platform": "twitch",
-    "userId": "scobbie3doo"
+    "userId": "scobbie3doo",
+    "featuredRank": "20"
   },
 
   {
@@ -18,16 +20,24 @@
   {
     "platform": "youtube",
     "userId": "UCgsAPwuq5cZcd0iFLs2ptKA",
-    "customUsername": "dispatch"
+    "customUsername": "dispatch",
+    "featuredRank": "13"
   },
   {
     "platform": "youtube",
     "userId": "UCSq29hQyumpx2ArTrgDLUrA",
-    "customUsername": "dispatchplays"
+    "customUsername": "dispatchplays",
+    "featuredRank": "11"
   },
   {
     "platform": "bitwave",
-    "userId": "dispatch"
+    "userId": "dispatch",
+    "featuredRank": "12"
+  },
+  {
+    "platform": "twitch",
+    "userId": "dispatchplays",
+    "featuredRank": "10"
   },
 
   {
@@ -43,22 +53,24 @@
 
   {
     "platform": "bitwave",
-    "userId": "crackrockchris"
+    "userId": "crackrockchris",
+    "featuredRank": "70"
   },
   {
     "platform": "trovo",
-    "userId": "CRC2021"
+    "userId": "CRC2021",
+    "featuredRank": "71"
   },
   {
     "platform": "youtube",
     "userId": "UC4AwaOB1kUKrsbTUN7J-enA",
-    "customUsername": "CRC"
+    "customUsername": "CRC",
+    "featuredRank": "72"
   },
 
   {
     "platform": "bitwave",
-    "userId": "Herbbudgreen",
-    "featuredRank": "10"
+    "userId": "Herbbudgreen"
   },
   {
     "platform": "bitwave",
@@ -131,7 +143,8 @@
   },
   {
     "platform": "bitwave",
-    "userId": "naughtypastor"
+    "userId": "naughtypastor",
+    "featuredRank": "50"
   },
   {
     "platform": "bitwave",
@@ -147,7 +160,8 @@
   },
   {
     "platform": "bitwave",
-    "userId": "popmycherry"
+    "userId": "popmycherry",
+    "featuredRank": "30"
   },
   {
     "platform": "vaughn",
@@ -215,17 +229,20 @@
   {
     "platform": "robotstreamer",
     "userId": "100",
-    "customUsername": "Pippy (Rick)"
+    "customUsername": "Pippy (Rick)",
+    "featuredRank": "100"
   },
   {
     "platform": "robotstreamer",
     "userId": "106",
-    "customUsername": "TrumpBot (Rick)"
+    "customUsername": "TrumpBot (Rick)",
+    "featuredRank": "101"
   },
   {
     "platform": "robotstreamer",
     "userId": "546",
-    "customUsername": "AssBlaster2 (Rick)"
+    "customUsername": "AssBlaster2 (Rick)",
+    "featuredRank": "102"
   },
   {
     "platform": "robotstreamer",
@@ -235,7 +252,8 @@
   {
     "platform": "robotstreamer",
     "userId": "3737",
-    "customUsername": "duhsten"
+    "customUsername": "duhsten",
+    "featuredRank": "40"
   },
   {
     "platform": "robotstreamer",
@@ -253,7 +271,8 @@
   {
     "platform": "robotstreamer",
     "userId": "108",
-    "customUsername": "JennyBot2 (E7)"
+    "customUsername": "JennyBot2 (E7)",
+    "featuredRank": "60"
   },
   {
     "platform": "bitwave",
