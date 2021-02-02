@@ -1,4 +1,7 @@
 const fs = require("fs");
+// Read and import all .js files from scrapers/
+// They should export [platformName, scraperFn]
+// Wrap the scraper function: set the platform to the return obj, and delete viewers/title if not live
 const scrapers = fs
     .readdirSync('./scrapers')
     .filter(f => f.endsWith('.js'))
