@@ -299,5 +299,10 @@
   {
     "platform": "bitwave",
     "userId": "SnakeFiguresFan"
+  },
+  {
+    "platform": "robotstreamer",
+    "userId": "3793",
+    "customUsername": "doomtube"
   }
 ]
