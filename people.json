@@ -89,7 +89,12 @@
     "customUsername": "CRC",
     "featuredRank": "72"
   },
-
+  {
+    "platform": "twitch",
+    "userId": "thecrackcord",
+    "customUsername": "CRC",
+    "featuredRank": "73"
+  },
   {
     "platform": "bitwave",
     "userId": "Herbbudgreen"
