@@ -3,7 +3,7 @@
     "platform": "youtube",
     "userId": "UCxEdWwrSPpTLudLb66j0kSw",
     "customUsername": "scobbie",
-    "featuredRank": "21"
+    "featuredRank": "87.1287"
   },
   {
     "platform": "youtube",
@@ -49,10 +49,6 @@
     "platform": "twitch",
     "userId": "dispatchplays",
     "featuredRank": "10"
-  },
-  {
-    "platform": "bitwave",
-    "userId": "spam"
   },
   {
     "platform": "bitwave",
@@ -111,10 +107,6 @@
   {
     "platform": "bitwave",
     "userId": "Herbbudgreen"
-  },
-  {
-    "platform": "bitwave",
-    "userId": "TheCantina"
   },
   {
     "platform": "bitwave",
@@ -193,10 +185,6 @@
     "platform": "bitwave",
     "userId": "naughtypastor",
     "featuredRank": "35"
-  },
-  {
-    "platform": "bitwave",
-    "userId": "curvycom"
   },
   {
     "platform": "bitwave",
@@ -360,5 +348,10 @@
     "platform": "robotstreamer",
     "userId": "4212",
     "customUsername": "HeteroAlphaGod"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "samyxbaby",
+    "featuredRank": "21.5"
   }
 ]
