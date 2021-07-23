@@ -457,5 +457,9 @@
   {
     "platform": "youtube",
     "userId": "UCFvmpLZZv3wlnNF3Gmlwg9Q"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "thirdparty"
   }
 ]
