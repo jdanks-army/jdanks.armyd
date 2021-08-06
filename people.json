@@ -470,5 +470,9 @@
   {
     "platform": "bitwave",
     "userId": "thirdparty"
+  },
+  {
+    "platform": "bitwave",
+    "userId": "TheWarHammer"
   }
 ]
