@@ -99,6 +99,11 @@
   },
   {
     "platform": "robotstreamer",
+    "userId": "4126",
+    "customUsername": "playlistbot"
+  },
+  {
+    "platform": "robotstreamer",
     "userId": "4118",
     "customUsername": "JDANKSARMY"
   },
